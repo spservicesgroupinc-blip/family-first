@@ -12,9 +12,13 @@ class GeminiService {
   private tokenListener: ((count: number) => void) | null = null;
 
   constructor(apiKey?: string) {
-    const key = apiKey ?? process.env.GEMINI_API_KEY ?? process.env.API_KEY;
+    // Support Vite (VITE_), standard, and legacy env var names
+    const key = apiKey ?? 
+                process.env.VITE_GEMINI_API_KEY ?? 
+                process.env.GEMINI_API_KEY ?? 
+                process.env.API_KEY;
     if (!key) {
-      throw new Error("No Gemini API key provided (GEMINI_API_KEY or API_KEY)");
+      throw new Error("No Gemini API key provided. Set VITE_GEMINI_API_KEY, GEMINI_API_KEY, or API_KEY environment variable.");
     }
     this.ai = new GoogleGenAI({ apiKey: key });
   }

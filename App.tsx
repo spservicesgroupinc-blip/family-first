@@ -57,20 +57,20 @@ const FileManager: React.FC<{ files: CaseFile[]; onUpload: (f: CaseFile) => void
   };
 
   return (
-    <div className="p-4 md:p-8 max-w-5xl mx-auto h-full overflow-y-auto legal-scroll">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 md:mb-8">
-        <div>
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-legal-900">Case Files</h2>
-            <p className="text-sm md:text-base text-legal-600 mt-1 md:mt-2">Upload motions, orders, and evidence (PDF, Text, Images). These files are saved locally and analyzed by AI.</p>
+    <div className="p-4 md:p-8 max-w-5xl mx-auto h-full overflow-y-auto legal-scroll pb-safe">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 md:gap-4 mb-4 md:mb-8">
+        <div className="flex-1 min-w-0">
+            <h2 className="text-xl md:text-3xl font-serif font-bold text-legal-900">Case Files</h2>
+            <p className="text-xs md:text-base text-legal-600 mt-1">Upload motions, orders, and evidence (PDF, Text, Images).</p>
         </div>
-        <label className="w-full sm:w-auto flex justify-center items-center gap-2 bg-legal-900 hover:bg-legal-800 text-legal-50 px-4 py-3 md:py-2 rounded-lg cursor-pointer transition shadow-sm border border-legal-800">
-          <Icons.Upload className="w-4 h-4" />
-          <span className="text-sm font-medium uppercase tracking-wider">Upload Document</span>
-          <input 
-            type="file" 
-            className="hidden" 
-            onChange={handleFileChange} 
-            accept=".txt,.md,.json,.csv,.pdf,.jpg,.jpeg,.png" 
+        <label className="w-full sm:w-auto flex justify-center items-center gap-2 bg-legal-900 hover:bg-legal-800 text-legal-50 px-4 py-3 md:py-2.5 rounded-lg cursor-pointer transition shadow-sm border border-legal-800 min-h-[44px]">
+          <Icons.Upload className="w-4 h-4 shrink-0" />
+          <span className="text-xs md:text-sm font-medium uppercase tracking-wider">Upload</span>
+          <input
+            type="file"
+            className="hidden"
+            onChange={handleFileChange}
+            accept=".txt,.md,.json,.csv,.pdf,.jpg,.jpeg,.png"
           />
         </label>
       </div>
@@ -138,38 +138,38 @@ const ResearchTool: React.FC = () => {
   };
 
   return (
-    <div className="p-4 md:p-8 max-w-4xl mx-auto h-full flex flex-col">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-2">
-        <h2 className="text-2xl md:text-3xl font-serif font-bold text-legal-900">Deep Legal Research</h2>
+    <div className="p-4 md:p-8 max-w-4xl mx-auto h-full flex flex-col pb-safe">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 md:gap-4 mb-2">
+        <h2 className="text-xl md:text-3xl font-serif font-bold text-legal-900">Deep Legal Research</h2>
         {result && (
-          <button 
+          <button
             onClick={() => generatePDF('research-report', 'Legal_Research_Report.pdf')}
-            className="w-full sm:w-auto flex justify-center items-center gap-2 bg-legal-100 hover:bg-legal-200 text-legal-800 px-4 py-2 rounded-lg font-medium transition-colors border border-legal-200 text-sm uppercase tracking-wider"
+            className="w-full sm:w-auto flex justify-center items-center gap-2 bg-legal-100 hover:bg-legal-200 text-legal-800 px-4 py-2.5 rounded-lg font-medium transition-colors border border-legal-200 text-xs md:text-sm uppercase tracking-wider min-h-[44px]"
           >
-            <Icons.Download className="w-4 h-4" />
+            <Icons.Download className="w-4 h-4 shrink-0" />
             Save PDF
           </button>
         )}
       </div>
-      <p className="text-sm md:text-base text-legal-600 mb-6 md:mb-8">
+      <p className="text-xs md:text-base text-legal-600 mb-4 md:mb-8">
         <span className="bg-legal-100 text-legal-800 border border-legal-200 text-[10px] px-2 py-1 rounded-full font-bold mr-2 uppercase tracking-wider">MULTI-MODEL</span>
         Running parallel analysis with Gemini 3 Pro (Case Law) and Gemini 3 Flash (Statutes).
       </p>
 
-      <div className="relative mb-6 md:mb-8">
+      <div className="relative mb-4 md:mb-8">
         <div className="flex flex-col sm:flex-row gap-2">
             <input
             type="text"
-            className="w-full p-3 md:p-4 pl-4 md:pl-5 rounded-lg border border-legal-200 focus:border-legal-500 focus:ring-1 focus:ring-legal-500 outline-none shadow-sm font-serif text-sm md:text-base"
-            placeholder="e.g., Criteria for modifying child custody in Indiana when parent relocates..."
+            className="w-full p-3 md:p-4 pl-4 md:pl-5 rounded-lg border border-legal-200 focus:border-legal-500 focus:ring-1 focus:ring-legal-500 outline-none shadow-sm font-serif text-sm md:text-base min-h-[44px]"
+            placeholder="e.g., Criteria for modifying child custody in Indiana..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleResearch()}
             />
-            <button 
+            <button
                 onClick={handleResearch}
                 disabled={loading}
-                className="w-full sm:w-auto bg-legal-900 text-legal-50 px-8 py-3 md:py-0 rounded-lg font-medium hover:bg-legal-800 disabled:opacity-50 transition-colors uppercase tracking-wider text-sm border border-legal-800"
+                className="w-full sm:w-auto bg-legal-900 text-legal-50 px-8 py-3 md:py-2.5 rounded-lg font-medium hover:bg-legal-800 disabled:opacity-50 transition-colors uppercase tracking-wider text-sm border border-legal-800 min-h-[44px]"
             >
                 {loading ? 'Analyzing...' : 'Research'}
             </button>
@@ -246,46 +246,46 @@ const MotionDrafter: React.FC<{ files: CaseFile[] }> = ({ files }) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-full md:overflow-hidden overflow-y-auto">
+    <div className="flex flex-col md:flex-row h-full md:overflow-hidden overflow-y-auto pb-safe">
       {/* Inputs */}
       <div className="w-full md:w-1/3 p-4 md:p-6 border-b md:border-b-0 md:border-r border-legal-200 bg-legal-50 md:overflow-y-auto shrink-0">
-        <h2 className="text-xl md:text-2xl font-serif font-bold text-legal-900 mb-4 md:mb-6">Draft Motion</h2>
-        
-        <div className="space-y-4">
+        <h2 className="text-xl md:text-2xl font-serif font-bold text-legal-900 mb-3 md:mb-6">Draft Motion</h2>
+
+        <div className="space-y-3 md:space-y-4">
             <div>
-                <label className="block text-[10px] uppercase tracking-widest font-bold text-legal-600 mb-2">Motion Type</label>
-                <input 
-                    className="w-full p-3 border border-legal-200 rounded focus:border-legal-500 focus:ring-1 focus:ring-legal-500 outline-none font-serif" 
+                <label className="block text-[10px] uppercase tracking-widest font-bold text-legal-600 mb-1 md:mb-2">Motion Type</label>
+                <input
+                    className="w-full p-3 border border-legal-200 rounded focus:border-legal-500 focus:ring-1 focus:ring-legal-500 outline-none font-serif min-h-[44px]"
                     placeholder="e.g., Motion to Modify Parenting Time"
                     value={topic}
                     onChange={(e) => setTopic(e.target.value)}
                 />
             </div>
-            
+
             <div>
-                <label className="block text-[10px] uppercase tracking-widest font-bold text-legal-600 mb-2">Specific Facts/Instructions</label>
-                <textarea 
-                    className="w-full p-3 border border-legal-200 rounded focus:border-legal-500 focus:ring-1 focus:ring-legal-500 outline-none h-40 font-serif" 
-                    placeholder="Enter key facts (dates, names, events) to be included in the motion..."
+                <label className="block text-[10px] uppercase tracking-widest font-bold text-legal-600 mb-1 md:mb-2">Specific Facts/Instructions</label>
+                <textarea
+                    className="w-full p-3 border border-legal-200 rounded focus:border-legal-500 focus:ring-1 focus:ring-legal-500 outline-none h-32 md:h-40 font-serif"
+                    placeholder="Enter key facts (dates, names, events) to be included..."
                     value={instructions}
                     onChange={(e) => setInstructions(e.target.value)}
                 />
             </div>
-            
-            <div className="p-4 bg-white rounded border border-legal-200">
-                <p className="text-[10px] text-legal-500 uppercase tracking-widest font-bold mb-3">Context ({files.length} files available)</p>
-                <div className="flex flex-wrap gap-2">
+
+            <div className="p-3 md:p-4 bg-white rounded border border-legal-200">
+                <p className="text-[10px] text-legal-500 uppercase tracking-widest font-bold mb-2 md:mb-3">Context ({files.length} files)</p>
+                <div className="flex flex-wrap gap-1 md:gap-2">
                     {files.map(f => (
-                        <span key={f.id} className="text-[10px] bg-legal-100 text-legal-800 border border-legal-200 px-2 py-1 rounded truncate max-w-[150px] font-medium">{f.name}</span>
+                        <span key={f.id} className="text-[10px] bg-legal-100 text-legal-800 border border-legal-200 px-2 py-1 rounded truncate max-w-[120px] md:max-w-[150px] font-medium">{f.name}</span>
                     ))}
                     {files.length === 0 && <span className="text-[10px] text-legal-400 italic font-serif">No files. Draft will be generic.</span>}
                 </div>
             </div>
 
-            <button 
+            <button
                 onClick={handleDraft}
                 disabled={loading}
-                className="w-full py-3 bg-legal-900 hover:bg-legal-800 text-legal-50 font-medium uppercase tracking-wider text-sm rounded shadow-sm transition disabled:opacity-50 border border-legal-800"
+                className="w-full py-3 bg-legal-900 hover:bg-legal-800 text-legal-50 font-medium uppercase tracking-wider text-sm rounded shadow-sm transition disabled:opacity-50 border border-legal-800 min-h-[44px]"
             >
                 {loading ? 'Drafting...' : 'Generate Motion'}
             </button>
@@ -293,30 +293,30 @@ const MotionDrafter: React.FC<{ files: CaseFile[] }> = ({ files }) => {
       </div>
 
       {/* Editor/Preview */}
-      <div className="w-full md:w-2/3 p-4 md:p-8 bg-white md:overflow-y-auto legal-scroll relative min-h-[500px] md:min-h-0">
+      <div className="w-full md:w-2/3 p-4 md:p-8 bg-white md:overflow-y-auto legal-scroll relative min-h-[300px] md:min-h-0">
         {draft ? (
-            <div className="max-w-3xl mx-auto shadow-sm border border-legal-200 p-6 md:p-12 min-h-[800px] font-serif leading-relaxed text-legal-900 whitespace-pre-wrap bg-white relative text-sm md:text-base">
-                <div className="absolute top-4 right-4 flex gap-2">
-                    <button 
+            <div className="max-w-3xl mx-auto shadow-sm border border-legal-200 p-4 md:p-12 min-h-[500px] md:min-h-[800px] font-serif leading-relaxed text-legal-900 whitespace-pre-wrap bg-white relative text-sm md:text-base">
+                <div className="sticky top-2 flex gap-2 justify-end mb-4">
+                    <button
                         onClick={handleCopy}
-                        className="text-[10px] uppercase tracking-widest font-bold bg-legal-100 hover:bg-legal-200 px-3 py-2 rounded text-legal-700 transition-colors"
+                        className="text-[10px] uppercase tracking-widest font-bold bg-legal-100 hover:bg-legal-200 px-3 py-2 rounded text-legal-700 transition-colors min-h-[44px] flex items-center"
                     >
                         Copy Text
                     </button>
-                    <button 
+                    <button
                         onClick={() => generatePDF('motion-draft', 'Drafted_Motion.pdf')}
-                        className="flex items-center gap-1 text-[10px] uppercase tracking-widest font-bold bg-legal-100 hover:bg-legal-200 px-3 py-2 rounded text-legal-700 transition-colors"
+                        className="flex items-center gap-1 text-[10px] uppercase tracking-widest font-bold bg-legal-100 hover:bg-legal-200 px-3 py-2 rounded text-legal-700 transition-colors min-h-[44px]"
                     >
                         <Icons.Download className="w-3 h-3" />
                         Save PDF
                     </button>
                 </div>
-                <div id="motion-draft" className="pt-8">
+                <div id="motion-draft" className="pt-4 md:pt-8">
                     {draft}
                 </div>
             </div>
         ) : (
-            <div className="flex flex-col items-center justify-center h-full text-legal-300">
+            <div className="flex flex-col items-center justify-center h-full text-legal-300 p-8">
                 <Icons.Scale className="w-12 h-12 mb-4" />
                 <p className="font-serif font-bold text-lg text-legal-600">Draft preview will appear here</p>
                 <p className="text-sm mt-2 text-legal-400 max-w-xs text-center italic font-serif">AI will apply standard Indiana Trial Rules formatting.</p>
@@ -365,26 +365,26 @@ const Assistant: React.FC<{ files: CaseFile[] }> = ({ files }) => {
 
     return (
         <div className="flex flex-col h-full bg-legal-50 relative">
-            <div className="flex justify-between items-center p-3 md:p-4 border-b border-legal-200 bg-white">
-                <h2 className="text-lg md:text-xl font-serif font-bold text-legal-900">AI Assistant</h2>
-                <button 
+            <div className="flex justify-between items-center p-3 md:p-4 border-b border-legal-200 bg-white min-h-[56px]">
+                <h2 className="text-base md:text-xl font-serif font-bold text-legal-900">AI Assistant</h2>
+                <button
                     onClick={() => generatePDF('chat-history', 'Chat_History.pdf')}
-                    className="flex items-center gap-1 md:gap-2 bg-legal-100 hover:bg-legal-200 text-legal-800 px-2 py-1.5 md:px-3 rounded font-medium transition-colors border border-legal-200 text-[10px] md:text-xs uppercase tracking-wider"
+                    className="flex items-center gap-1 md:gap-2 bg-legal-100 hover:bg-legal-200 text-legal-800 px-2 py-1.5 md:px-3 md:py-2 rounded font-medium transition-colors border border-legal-200 text-[10px] md:text-xs uppercase tracking-wider min-h-[44px]"
                 >
-                    <Icons.Download className="w-3 h-3" />
+                    <Icons.Download className="w-3 h-3 shrink-0" />
                     <span className="hidden sm:inline">Save Chat PDF</span>
                     <span className="sm:hidden">Save</span>
                 </button>
             </div>
-            <div id="chat-history" className="flex-1 overflow-y-auto p-3 md:p-8 space-y-4 md:space-y-6">
+            <div id="chat-history" className="flex-1 overflow-y-auto p-3 md:p-8 space-y-3 md:space-y-6">
                 {messages.map(msg => (
                     <div key={msg.id} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                        <div className={`max-w-[80%] md:max-w-[70%] p-5 rounded-2xl shadow-sm ${
-                            msg.role === 'user' 
-                            ? 'bg-legal-900 text-legal-50 rounded-br-sm border border-legal-800' 
+                        <div className={`max-w-[85%] sm:max-w-[80%] md:max-w-[70%] p-3 md:p-5 rounded-2xl shadow-sm ${
+                            msg.role === 'user'
+                            ? 'bg-legal-900 text-legal-50 rounded-br-sm border border-legal-800'
                             : 'bg-white text-legal-900 border border-legal-200 rounded-bl-sm'
                         }`}>
-                            <div className="prose prose-sm max-w-none font-serif leading-relaxed text-[15px]">
+                            <div className="prose prose-sm max-w-none font-serif leading-relaxed text-sm md:text-[15px]">
                                 <div dangerouslySetInnerHTML={{ __html: msg.text.replace(/\n/g, '<br/>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
                             </div>
                         </div>
@@ -392,7 +392,7 @@ const Assistant: React.FC<{ files: CaseFile[] }> = ({ files }) => {
                 ))}
                 {thinking && (
                     <div className="flex justify-start">
-                        <div className="bg-white p-5 rounded-2xl rounded-bl-sm border border-legal-200 shadow-sm flex gap-2 items-center">
+                        <div className="bg-white p-3 md:p-5 rounded-2xl rounded-bl-sm border border-legal-200 shadow-sm flex gap-2 items-center">
                             <div className="w-2 h-2 bg-legal-400 rounded-full animate-bounce"></div>
                             <div className="w-2 h-2 bg-legal-400 rounded-full animate-bounce delay-75"></div>
                             <div className="w-2 h-2 bg-legal-400 rounded-full animate-bounce delay-150"></div>
@@ -402,26 +402,26 @@ const Assistant: React.FC<{ files: CaseFile[] }> = ({ files }) => {
                 <div ref={bottomRef} />
             </div>
 
-            <div className="p-3 md:p-4 bg-white border-t border-legal-200">
+            <div className="p-2 md:p-4 bg-white border-t border-legal-200 pb-safe">
                 <div className="max-w-4xl mx-auto flex gap-2 md:gap-3">
-                    <input 
-                        type="text" 
-                        className="flex-1 border border-legal-200 rounded-lg px-3 py-2 md:px-4 md:py-3 focus:border-legal-500 focus:ring-1 focus:ring-legal-500 outline-none font-serif text-sm md:text-base"
-                        placeholder="Ask a question about Indiana law or your case files..."
+                    <input
+                        type="text"
+                        className="flex-1 border border-legal-200 rounded-lg px-3 py-2.5 md:px-4 md:py-3 focus:border-legal-500 focus:ring-1 focus:ring-legal-500 outline-none font-serif text-sm md:text-base min-h-[44px]"
+                        placeholder="Ask about Indiana law or your case files..."
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                         disabled={thinking}
                     />
-                    <button 
+                    <button
                         onClick={handleSend}
                         disabled={thinking || !input.trim()}
-                        className="bg-legal-900 text-legal-50 px-4 py-2 md:px-8 md:py-3 rounded-lg font-medium uppercase tracking-wider text-xs md:text-sm hover:bg-legal-800 disabled:opacity-50 transition-colors border border-legal-800"
+                        className="bg-legal-900 text-legal-50 px-4 py-2 md:px-8 md:py-3 rounded-lg font-medium uppercase tracking-wider text-xs md:text-sm hover:bg-legal-800 disabled:opacity-50 transition-colors border border-legal-800 min-h-[44px] shrink-0"
                     >
                         Send
                     </button>
                 </div>
-                <p className="text-center text-[8px] md:text-[10px] text-legal-400 mt-2 md:mt-3 uppercase tracking-widest font-bold">Family First can make mistakes. Verify important information.</p>
+                <p className="text-center text-[8px] md:text-[10px] text-legal-400 mt-1 md:mt-3 uppercase tracking-widest font-bold">Family First can make mistakes. Verify important information.</p>
             </div>
         </div>
     );
@@ -451,25 +451,25 @@ const ProfileSettings: React.FC<{ onClearData: () => void }> = ({ onClearData })
     };
 
     return (
-        <div className="p-4 md:p-8 max-w-4xl mx-auto h-full overflow-y-auto legal-scroll">
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-legal-900 mb-6 md:mb-8">Profile & Settings</h2>
-            
-            <div className="space-y-6">
+        <div className="p-4 md:p-8 max-w-4xl mx-auto h-full overflow-y-auto legal-scroll pb-safe">
+            <h2 className="text-xl md:text-3xl font-serif font-bold text-legal-900 mb-4 md:mb-8">Profile & Settings</h2>
+
+            <div className="space-y-4 md:space-y-6">
                 {/* Personal Info Card */}
-                <div className="bg-white p-6 rounded-xl shadow-sm border border-legal-200 relative">
-                    <h3 className="text-lg font-serif font-bold text-legal-900 mb-4 border-b border-legal-100 pb-2">Account Information</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-legal-200 relative">
+                    <h3 className="text-base md:text-lg font-serif font-bold text-legal-900 mb-3 md:mb-4 border-b border-legal-100 pb-2">Account Information</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                         <div>
                             <label className="block text-[10px] uppercase tracking-widest font-bold text-legal-600 mb-1">Full Name</label>
-                            <input type="text" value={name} onChange={e => setName(e.target.value)} className="w-full p-3 border border-legal-200 rounded focus:border-legal-500 focus:ring-1 focus:ring-legal-500 outline-none font-serif text-sm" />
+                            <input type="text" value={name} onChange={e => setName(e.target.value)} className="w-full p-3 border border-legal-200 rounded focus:border-legal-500 focus:ring-1 focus:ring-legal-500 outline-none font-serif text-sm min-h-[44px]" />
                         </div>
                         <div>
                             <label className="block text-[10px] uppercase tracking-widest font-bold text-legal-600 mb-1">Email Address</label>
-                            <input type="email" value={email} onChange={e => setEmail(e.target.value)} className="w-full p-3 border border-legal-200 rounded focus:border-legal-500 focus:ring-1 focus:ring-legal-500 outline-none font-serif text-sm" />
+                            <input type="email" value={email} onChange={e => setEmail(e.target.value)} className="w-full p-3 border border-legal-200 rounded focus:border-legal-500 focus:ring-1 focus:ring-legal-500 outline-none font-serif text-sm min-h-[44px]" />
                         </div>
                         <div className="md:col-span-2">
                             <label className="block text-[10px] uppercase tracking-widest font-bold text-legal-600 mb-1">Role</label>
-                            <select value={role} onChange={e => setRole(e.target.value)} className="w-full p-3 border border-legal-200 rounded focus:border-legal-500 focus:ring-1 focus:ring-legal-500 outline-none font-serif text-sm bg-white">
+                            <select value={role} onChange={e => setRole(e.target.value)} className="w-full p-3 border border-legal-200 rounded focus:border-legal-500 focus:ring-1 focus:ring-legal-500 outline-none font-serif text-sm bg-white min-h-[44px]">
                                 <option>Pro Se Litigant</option>
                                 <option>Attorney</option>
                                 <option>Paralegal</option>
@@ -477,39 +477,39 @@ const ProfileSettings: React.FC<{ onClearData: () => void }> = ({ onClearData })
                             </select>
                         </div>
                     </div>
-                    <div className="mt-6 flex justify-between items-center">
+                    <div className="mt-4 md:mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                         <span className="text-xs text-green-600 font-bold uppercase tracking-wider">{saveMessage}</span>
-                        <button onClick={handleSave} className="bg-legal-900 text-legal-50 px-6 py-2 rounded-lg font-medium hover:bg-legal-800 transition-colors uppercase tracking-wider text-xs">Save Changes</button>
+                        <button onClick={handleSave} className="w-full sm:w-auto bg-legal-900 text-legal-50 px-6 py-2.5 rounded-lg font-medium hover:bg-legal-800 transition-colors uppercase tracking-wider text-xs min-h-[44px]">Save Changes</button>
                     </div>
                 </div>
 
                 {/* Data Management Card */}
-                <div className="bg-white p-6 rounded-xl shadow-sm border border-legal-200">
-                    <h3 className="text-lg font-serif font-bold text-legal-900 mb-4 border-b border-legal-100 pb-2">Data & Privacy</h3>
-                    <p className="text-sm text-legal-600 mb-4">Your case files and chat history are stored locally on your device. Clearing data will permanently delete all uploaded files and reset your session.</p>
-                    
+                <div className="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-legal-200">
+                    <h3 className="text-base md:text-lg font-serif font-bold text-legal-900 mb-3 md:mb-4 border-b border-legal-100 pb-2">Data & Privacy</h3>
+                    <p className="text-xs md:text-sm text-legal-600 mb-3 md:mb-4">Your case files and chat history are stored locally. Clearing data will permanently delete all uploaded files and reset your session.</p>
+
                     {!showConfirmClear ? (
-                        <button onClick={() => setShowConfirmClear(true)} className="bg-red-50 text-red-600 border border-red-200 px-4 py-2 rounded-lg font-medium hover:bg-red-100 transition-colors uppercase tracking-wider text-xs">Clear All Local Data</button>
+                        <button onClick={() => setShowConfirmClear(true)} className="w-full sm:w-auto bg-red-50 text-red-600 border border-red-200 px-4 py-2.5 rounded-lg font-medium hover:bg-red-100 transition-colors uppercase tracking-wider text-xs min-h-[44px]">Clear All Local Data</button>
                     ) : (
-                        <div className="bg-red-50 border border-red-200 p-4 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-4">
-                            <span className="text-sm text-red-800 font-bold">Are you sure? This cannot be undone.</span>
+                        <div className="bg-red-50 border border-red-200 p-3 md:p-4 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-3">
+                            <span className="text-xs md:text-sm text-red-800 font-bold text-center sm:text-left">Are you sure? This cannot be undone.</span>
                             <div className="flex gap-2 w-full sm:w-auto">
-                                <button onClick={() => setShowConfirmClear(false)} className="flex-1 sm:flex-none bg-white text-legal-600 border border-legal-200 px-4 py-2 rounded-lg font-medium hover:bg-legal-50 transition-colors uppercase tracking-wider text-xs">Cancel</button>
-                                <button onClick={handleClear} className="flex-1 sm:flex-none bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition-colors uppercase tracking-wider text-xs">Yes, Delete</button>
+                                <button onClick={() => setShowConfirmClear(false)} className="flex-1 sm:flex-none bg-white text-legal-600 border border-legal-200 px-4 py-2.5 rounded-lg font-medium hover:bg-legal-50 transition-colors uppercase tracking-wider text-xs min-h-[44px]">Cancel</button>
+                                <button onClick={handleClear} className="flex-1 sm:flex-none bg-red-600 text-white px-4 py-2.5 rounded-lg font-medium hover:bg-red-700 transition-colors uppercase tracking-wider text-xs min-h-[44px]">Yes, Delete</button>
                             </div>
                         </div>
                     )}
                 </div>
-                
+
                 {/* Subscription Card */}
-                <div className="bg-white p-6 rounded-xl shadow-sm border border-legal-200">
-                    <h3 className="text-lg font-serif font-bold text-legal-900 mb-4 border-b border-legal-100 pb-2">Subscription</h3>
+                <div className="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-legal-200">
+                    <h3 className="text-base md:text-lg font-serif font-bold text-legal-900 mb-3 md:mb-4 border-b border-legal-100 pb-2">Subscription</h3>
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm font-bold text-legal-900">Free Tier</p>
                             <p className="text-xs text-legal-500">Local storage only. Standard AI models.</p>
                         </div>
-                        <span className="bg-legal-100 text-legal-800 border border-legal-200 text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">Active</span>
+                        <span className="bg-legal-100 text-legal-800 border border-legal-200 text-[10px] px-2 md:px-3 py-1 rounded-full font-bold uppercase tracking-wider">Active</span>
                     </div>
                 </div>
             </div>
@@ -564,64 +564,64 @@ const App: React.FC = () => {
   };
   
   const Dashboard = () => (
-    <div className="p-4 md:p-8 max-w-6xl mx-auto overflow-y-auto h-full">
-      <div className="flex justify-between items-start mb-6 md:mb-10">
-        <div>
-          <h1 className="text-3xl md:text-4xl font-serif font-bold text-legal-900 mb-1 md:mb-2">Welcome to Family First</h1>
+    <div className="p-4 md:p-8 max-w-6xl mx-auto overflow-y-auto h-full pb-safe">
+      <div className="flex flex-col sm:flex-row justify-between items-start gap-3 mb-4 md:mb-10">
+        <div className="flex-1 min-w-0">
+          <h1 className="text-2xl md:text-4xl font-serif font-bold text-legal-900 mb-1">Welcome to Family First</h1>
           <p className="text-sm md:text-lg text-legal-600">Your AI Partner in Family Court.</p>
         </div>
         {!!deferredPrompt && (
-          <button onClick={handleInstallClick} className="md:hidden flex items-center gap-2 bg-legal-900 text-legal-50 px-3 py-2 rounded-lg text-[10px] uppercase tracking-wider font-bold shadow-sm">
-            <Icons.Download className="w-4 h-4" />
-            Install
+          <button onClick={handleInstallClick} className="w-full sm:w-auto flex items-center justify-center gap-2 bg-legal-900 text-legal-50 px-3 py-2.5 rounded-lg text-xs uppercase tracking-wider font-bold shadow-sm min-h-[44px]">
+            <Icons.Download className="w-4 h-4 shrink-0" />
+            Install App
           </button>
         )}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-         <div onClick={() => setView('assistant')} className="bg-legal-900 p-6 rounded-2xl shadow-sm text-legal-50 cursor-pointer transform hover:scale-[1.02] transition border border-legal-800">
-            <div className="bg-legal-800 w-10 h-10 rounded-lg flex items-center justify-center mb-4 border border-legal-700">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+         <div onClick={() => setView('assistant')} className="bg-legal-900 p-5 md:p-6 rounded-2xl shadow-sm text-legal-50 cursor-pointer transform hover:scale-[1.02] transition border border-legal-800">
+            <div className="bg-legal-800 w-10 h-10 rounded-lg flex items-center justify-center mb-3 md:mb-4 border border-legal-700">
                 <Icons.Chat className="w-5 h-5 text-legal-200" />
             </div>
-            <h3 className="text-xl font-serif font-bold mb-2">AI Assistant</h3>
+            <h3 className="text-lg md:text-xl font-serif font-bold mb-2">AI Assistant</h3>
             <p className="text-legal-300 text-sm leading-relaxed">Chat with an expert about your case strategy and questions.</p>
          </div>
 
-         <div onClick={() => setView('research')} className="bg-white p-6 rounded-2xl shadow-sm border border-legal-200 cursor-pointer hover:border-legal-400 hover:shadow-md transition">
-            <div className="bg-legal-50 w-10 h-10 rounded-lg flex items-center justify-center mb-4 text-legal-700 border border-legal-100">
+         <div onClick={() => setView('research')} className="bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-legal-200 cursor-pointer hover:border-legal-400 hover:shadow-md transition">
+            <div className="bg-legal-50 w-10 h-10 rounded-lg flex items-center justify-center mb-3 md:mb-4 text-legal-700 border border-legal-100">
                 <Icons.Search className="w-5 h-5" />
             </div>
-            <h3 className="text-xl font-serif font-bold text-legal-900 mb-2">Legal Research</h3>
+            <h3 className="text-lg md:text-xl font-serif font-bold text-legal-900 mb-2">Legal Research</h3>
             <p className="text-legal-600 text-sm leading-relaxed">Find Indiana precedents, statutes (Title 31), and rules.</p>
          </div>
 
-         <div onClick={() => setView('drafting')} className="bg-white p-6 rounded-2xl shadow-sm border border-legal-200 cursor-pointer hover:border-legal-400 hover:shadow-md transition">
-            <div className="bg-legal-50 w-10 h-10 rounded-lg flex items-center justify-center mb-4 text-legal-700 border border-legal-100">
+         <div onClick={() => setView('drafting')} className="bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-legal-200 cursor-pointer hover:border-legal-400 hover:shadow-md transition">
+            <div className="bg-legal-50 w-10 h-10 rounded-lg flex items-center justify-center mb-3 md:mb-4 text-legal-700 border border-legal-100">
                 <Icons.Scale className="w-5 h-5" />
             </div>
-            <h3 className="text-xl font-serif font-bold text-legal-900 mb-2">Draft Motions</h3>
+            <h3 className="text-lg md:text-xl font-serif font-bold text-legal-900 mb-2">Draft Motions</h3>
             <p className="text-legal-600 text-sm leading-relaxed">Generate court-ready motions tailored to your facts.</p>
          </div>
 
-         <div onClick={() => setView('files')} className="bg-white p-6 rounded-2xl shadow-sm border border-legal-200 cursor-pointer hover:border-legal-400 hover:shadow-md transition">
-            <div className="bg-legal-50 w-10 h-10 rounded-lg flex items-center justify-center mb-4 text-legal-700 border border-legal-100">
+         <div onClick={() => setView('files')} className="bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-legal-200 cursor-pointer hover:border-legal-400 hover:shadow-md transition">
+            <div className="bg-legal-50 w-10 h-10 rounded-lg flex items-center justify-center mb-3 md:mb-4 text-legal-700 border border-legal-100">
                 <Icons.Document className="w-5 h-5" />
             </div>
-            <h3 className="text-xl font-serif font-bold text-legal-900 mb-2">Case Files</h3>
+            <h3 className="text-lg md:text-xl font-serif font-bold text-legal-900 mb-2">Case Files</h3>
             <p className="text-legal-600 text-sm leading-relaxed">Manage your evidence and documents securely.</p>
          </div>
       </div>
-      
-      <div className="mt-12 p-8 bg-white rounded-xl border border-legal-200">
-          <h2 className="text-xl font-serif font-bold text-legal-900 mb-4">Recent Case Files</h2>
+
+      <div className="mt-8 md:mt-12 p-4 md:p-8 bg-white rounded-xl border border-legal-200">
+          <h2 className="text-lg md:text-xl font-serif font-bold text-legal-900 mb-3 md:mb-4">Recent Case Files</h2>
           {files.length === 0 ? (
-              <p className="text-legal-400 italic">No recent files.</p>
+              <p className="text-legal-400 italic text-sm">No recent files.</p>
           ) : (
               <ul className="divide-y divide-legal-100">
                   {files.slice(0, 3).map(f => (
                       <li key={f.id} className="py-3 flex justify-between text-sm">
-                          <span className="font-medium text-legal-700">{f.name}</span>
-                          <span className="text-legal-400">{new Date(f.dateAdded).toLocaleDateString()}</span>
+                          <span className="font-medium text-legal-700 truncate mr-2">{f.name}</span>
+                          <span className="text-legal-400 shrink-0">{new Date(f.dateAdded).toLocaleDateString()}</span>
                       </li>
                   ))}
               </ul>

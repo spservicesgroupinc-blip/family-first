@@ -4,9 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <title>Family First - AI Partner in Family Court</title>
+    
+    <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#102a43">
+    <meta name="description" content="AI-powered legal assistant for family court. Research statutes, draft motions, and chat with an AI legal expert.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Family First">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/924/924915.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn-icons-png.flaticon.com/512/924/924915.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn-icons-png.flaticon.com/512/924/924915.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script>
@@ -50,14 +62,37 @@
       .legal-scroll::-webkit-scrollbar-thumb:hover {
         background: #555;
       }
-      .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
-      .pt-safe { padding-top: env(safe-area-inset-top); }
+      .pb-safe { padding-bottom: env(safe-area-inset-bottom, 8px); }
+      .pt-safe { padding-top: env(safe-area-inset-top, 0); }
       .hide-scrollbar::-webkit-scrollbar {
         display: none;
       }
       .hide-scrollbar {
         -ms-overflow-style: none;
         scrollbar-width: none;
+      }
+      
+      /* Mobile improvements */
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+      button, input, select, textarea, label {
+        min-height: 44px;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+      body {
+        overscroll-behavior: none;
+        -webkit-overflow-scrolling: touch;
+      }
+      /* Improve touch targets */
+      @media (max-width: 768px) {
+        button, [role="button"], a {
+          min-height: 44px;
+          min-width: 44px;
+        }
       }
     </style>
   <script type="importmap">

@@ -36,24 +36,25 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, tokenUsage
           </div>
           <span className="hidden lg:block text-[10px] text-legal-400 uppercase tracking-widest font-medium">AI Partner in Family Court</span>
         </div>
-        
-        <nav className="flex flex-row md:flex-col w-full h-full md:h-auto items-center justify-start md:justify-start px-2 md:mt-8 md:px-2 lg:px-4 md:space-y-2 overflow-x-auto md:overflow-visible hide-scrollbar gap-2 md:gap-0">
+
+        <nav className="flex flex-row md:flex-col w-full h-full md:h-auto items-center justify-center md:justify-start px-1 md:mt-8 md:px-2 lg:px-4 md:space-y-1 overflow-x-auto md:overflow-visible hide-scrollbar gap-1 md:gap-0">
           {navItems.map((item) => {
             const isActive = currentView === item.id;
             return (
             <button
               key={item.id}
               onClick={() => onViewChange(item.id)}
-              className={`flex flex-col md:flex-row items-center justify-center md:justify-start gap-1 md:gap-4 p-1 md:px-4 md:py-3 rounded-lg transition-all duration-200 min-w-[60px] md:min-w-0 md:w-full ${
+              aria-label={item.label}
+              className={`flex flex-col md:flex-row items-center justify-center md:justify-start gap-0 md:gap-4 p-2 md:px-4 md:py-3 rounded-lg transition-all duration-200 min-w-[48px] min-h-[44px] md:min-w-0 md:w-full ${
                 isActive
-                  ? 'text-legal-50 md:bg-legal-800 md:shadow-sm md:border md:border-legal-700'
+                  ? 'text-legal-50 md:bg-legal-800 md:shadow-sm md:border md:border-legal-700 bg-legal-800/50'
                   : 'text-legal-400 hover:text-legal-100 md:hover:bg-legal-800/50'
               }`}
             >
-              <div className={`md:p-0 rounded-full transition-colors flex items-center justify-center ${isActive ? 'bg-legal-800 px-4 py-1 md:bg-transparent md:px-0 md:py-0' : 'p-1'}`}>
-                 <item.icon className={`w-5 h-5 md:w-5 md:h-5`} />
+              <div className={`rounded-full transition-colors flex items-center justify-center ${isActive ? 'md:bg-transparent' : ''}`}>
+                 <item.icon className="w-5 h-5 md:w-5 md:h-5 shrink-0" />
               </div>
-              <span className={`text-[9px] md:text-xs uppercase tracking-widest font-medium ${isActive ? 'text-legal-50' : 'text-legal-400'} md:hidden lg:block`}>
+              <span className={`text-[8px] md:text-xs uppercase tracking-wider font-medium leading-tight md:hidden lg:block text-center md:text-left ${isActive ? 'text-legal-50' : 'text-legal-400'} mt-0.5 md:mt-0`}>
                 {item.label}
               </span>
             </button>
@@ -61,33 +62,33 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, tokenUsage
         </nav>
       </div>
 
-      <div className="hidden md:block p-4 border-t border-legal-800 space-y-4">
+      <div className="hidden md:block p-2 md:p-4 border-t border-legal-800 space-y-2 md:space-y-4">
         {/* Token Tracker */}
-        <div className="bg-legal-800/50 rounded-lg p-3 hidden lg:block border border-legal-800">
+        <div className="bg-legal-800/50 rounded-lg p-2 lg:p-3 hidden lg:block border border-legal-800">
             <div className="flex items-center justify-between mb-2">
                 <span className="text-[10px] font-semibold text-legal-400 uppercase tracking-wider">Session Usage</span>
                 <span className="text-xs font-mono text-legal-200">{formatTokens(tokenUsage)} toks</span>
             </div>
             <div className="h-1 bg-legal-900 rounded-full w-full overflow-hidden">
-                <div 
-                    className="h-full bg-legal-400 transition-all duration-500" 
+                <div
+                    className="h-full bg-legal-400 transition-all duration-500"
                     style={{ width: `${Math.min((tokenUsage / 100000) * 100, 100)}%` }}
                 ></div>
             </div>
         </div>
 
         {canInstall && (
-            <button 
+            <button
                 onClick={onInstall}
-                className="w-full flex items-center gap-4 px-4 py-3 rounded-lg text-legal-300 hover:bg-legal-800 transition-all duration-200 border border-legal-700"
+                className="w-full flex items-center justify-center md:justify-start gap-2 md:gap-4 px-2 md:px-4 py-2 md:py-3 rounded-lg text-legal-300 hover:bg-legal-800 transition-all duration-200 border border-legal-700"
             >
-                <IconSet.Download className="w-5 h-5" />
+                <IconSet.Download className="w-4 h-4 md:w-5 md:h-5 shrink-0" />
                 <span className="hidden lg:block font-medium text-xs uppercase tracking-widest">Install App</span>
             </button>
         )}
 
-        <div className="mt-4 text-center lg:text-left">
-           <p className="text-[10px] text-legal-600 uppercase tracking-widest">v1.2.0 • Desktop PWA</p>
+        <div className="mt-2 md:mt-4 text-center lg:text-left">
+           <p className="text-[8px] md:text-[10px] text-legal-600 uppercase tracking-widest">v1.3.0 • PWA</p>
         </div>
       </div>
     </div>
