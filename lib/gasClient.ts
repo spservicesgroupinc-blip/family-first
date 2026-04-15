@@ -5,7 +5,7 @@
 
 import { ClientProfile, ClientSummary } from '../types';
 
-const GAS_API_URL = import.meta.env.VITE_GAS_API_URL || '';
+const GAS_API_URL = import.meta.env.VITE_GAS_API_URL || 'https://script.google.com/macros/s/AKfycbwRJcTzPSdUZFxTVO5_70jyqGIGKRgXbXyyYYjwxolQPRQ1UjewRIWr2kcccl8cT4nD/exec';
 const GAS_API_KEY = import.meta.env.VITE_GAS_API_KEY || '';
 
 interface GASResponse<T> {
